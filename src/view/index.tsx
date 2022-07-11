@@ -13,8 +13,7 @@ const View = () => {
   const onSrc = useCallback(() => setSrc(tmpSrc), [tmpSrc])
   const onRefresh = useCallback(() => {
     const iframe = document.getElementById(frameId) as HTMLIFrameElement | null
-    if (!iframe) return
-    iframe.contentWindow?.location.reload()
+    if (iframe) iframe.src += ''
   }, [frameId])
 
   useEffect(() => {
