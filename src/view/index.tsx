@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 import { Gateway } from '@sentre/connector'
 
 import { Button, Card, Col, Input, Row } from 'antd'
@@ -8,6 +8,14 @@ const View = () => {
   const [tmpAppId, setTmpAppId] = useState('')
   const [src, setSrc] = useState('https://sentre.io/')
   const [appId, setAppId] = useState('my-app-id')
+
+  const frameId = useMemo(() => appId + '-iframe', [appId])
+  const onSrc = useCallback(() => setSrc(tmpSrc), [tmpSrc])
+  const onRefresh = useCallback(() => {
+    const iframe = document.getElementById(frameId) as HTMLIFrameElement | null
+    if (!iframe) return
+    iframe.contentWindow?.location.reload()
+  }, [frameId])
 
   useEffect(() => {
     const gateway = new Gateway(window.sentre.wallet)
@@ -43,11 +51,11 @@ const View = () => {
             <Button
               type="text"
               size="small"
-              onClick={() => setSrc(tmpSrc)}
-              disabled={!tmpSrc || tmpSrc === src}
+              onClick={tmpSrc === src ? onRefresh : onSrc}
+              disabled={!tmpSrc}
               style={{ marginRight: -7 }}
             >
-              Save
+              {tmpSrc === src ? 'Refresh' : 'Save'}
             </Button>
           }
         />
@@ -55,7 +63,7 @@ const View = () => {
       <Col span={24}>
         <Card bodyStyle={{ padding: 16, height: 'calc(100vh - 144px)' }}>
           <iframe
-            id={appId + '-iframe'}
+            id={frameId}
             src={src}
             title="Senhub Connector Tester."
             style={{
