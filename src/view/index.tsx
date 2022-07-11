@@ -44,7 +44,7 @@ const View = () => {
               type="text"
               size="small"
               onClick={() => setSrc(tmpSrc)}
-              disabled={tmpSrc === src}
+              disabled={!tmpSrc || tmpSrc === src}
               style={{ marginRight: -7 }}
             >
               Save
