@@ -5,9 +5,8 @@ import { Button, Card, Col, Input, Row } from 'antd'
 
 const View = () => {
   const [tmpSrc, setTmpSrc] = useState('')
-  const [tmpAppId, setTmpAppId] = useState('')
   const [src, setSrc] = useState('https://sentre.io/')
-  const [appId, setAppId] = useState('my-app-id')
+  const [appId, setAppId] = useState('')
 
   const frameId = useMemo(() => appId + '-iframe', [appId])
   const onSrc = useCallback(() => setSrc(tmpSrc), [tmpSrc])
@@ -23,25 +22,14 @@ const View = () => {
 
   return (
     <Row gutter={[12, 12]}>
-      <Col span={12}>
+      <Col span={8}>
         <Input
-          value={tmpAppId}
-          onChange={(e) => setTmpAppId(e.target.value || '')}
+          value={appId}
+          onChange={(e) => setAppId(e.target.value || '')}
           placeholder="my-app-id"
-          suffix={
-            <Button
-              type="text"
-              size="small"
-              onClick={() => setAppId(tmpAppId)}
-              disabled={!tmpAppId || tmpAppId === appId}
-              style={{ marginRight: -7 }}
-            >
-              Save
-            </Button>
-          }
         />
       </Col>
-      <Col span={12}>
+      <Col span={16}>
         <Input
           value={tmpSrc}
           onChange={(e) => setTmpSrc(e.target.value || '')}

@@ -1894,10 +1894,10 @@
   dependencies:
     react-helmet "^6.1.0"
 
-"@sentre/antd-ionicon@^1.0.34":
-  version "1.0.34"
-  resolved "https://registry.yarnpkg.com/@sentre/antd-ionicon/-/antd-ionicon-1.0.34.tgz#d83ac793c6886cc201edb2ac574e9c40ba877dae"
-  integrity sha512-56O2k5bbQH0cC7xS1EnnRn3hObMOFuXWoAOeEB/3gfCSESavB0HW8IO8pFqQ/H3pxUI6b9CTqwDgyD+jmFh4Uw==
+"@sentre/antd-ionicon@^1.0.36":
+  version "1.0.36"
+  resolved "https://registry.yarnpkg.com/@sentre/antd-ionicon/-/antd-ionicon-1.0.36.tgz#2776aa100470f883f49dc5342194410ab393b4b5"
+  integrity sha512-pARsl+TzfS06HvRSwDccOzCORBkJYPHj2Q5SrNcrMyZDl4OWChllcMWul7O0adWZIEO2OxNGUDG2yhacmmQNiw==
   dependencies:
     react-helmet "^6.1.0"
 
@@ -1908,18 +1908,21 @@
   dependencies:
     "@solana/web3.js" "^1.43.1"
 
-"@sentre/connector@^0.0.34":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@sentre/connector/-/connector-0.0.34.tgz#bc5f9505a53a9491d56a0a3c4e8ae1d780487c84"
-  integrity sha512-HmZrawL9DZszQxnC9lINRhUewX02H1z4UDyJRCi6rzdSgx1LAKFJvNBoMSo+dWZCOXPJqCpU1J3YeMoUcNDDxg==
+"@sentre/connector@^0.0.55":
+  version "0.0.55"
+  resolved "https://registry.yarnpkg.com/@sentre/connector/-/connector-0.0.55.tgz#85985c42b077774f358fed0c65d1e0691d015ed6"
+  integrity sha512-Zs50Gl2IdT9fhzCrQZPrCdfh6JYgxUb5XCOkYM5++MXG99HZW6LJ3MU/21opA7WzdOdKiDNygp+yEmSUiK7aOA==
   dependencies:
     "@solana/wallet-adapter-base" "^0.9.7"
     "@solana/web3.js" "^1.44.3"
+    bs58 "^5.0.0"
+    tweetnacl "^1.0.3"
+    uuid "^8.3.2"
 
-"@sentre/craco-plugins@^1.0.34":
-  version "1.0.34"
-  resolved "https://registry.yarnpkg.com/@sentre/craco-plugins/-/craco-plugins-1.0.34.tgz#15627789841068052ef07409e5aeba03cc6cc5f4"
-  integrity sha512-DvDirsrcItlFlgENlqc6moKyC6uuEGSWR2Ms8kl+ByaPMkKvUZw/A1QrPXkKwUJoa8FlJqOIHN8rWy7GVZ2P3Q==
+"@sentre/craco-plugins@^1.0.36":
+  version "1.0.36"
+  resolved "https://registry.yarnpkg.com/@sentre/craco-plugins/-/craco-plugins-1.0.36.tgz#b22f0b02379e814556b699be7dfcba1172d9dc42"
+  integrity sha512-vskl54PuS+qxkhhe3ktLCZ8bNjLVraPKwc7Wo6ym8M+7LQy75bPpee6C4+77Aslx9ISdEKbkLlNImjlOPbK26w==
   dependencies:
     "@babel/cli" "^7.17.10"
     "@babel/core" "^7.18.2"
@@ -1962,10 +1965,10 @@
   resolved "https://registry.yarnpkg.com/@sentre/react-lazyload/-/react-lazyload-3.2.2.tgz#f3d921327a2b14b9b3a9e906d01034f11387097a"
   integrity sha512-NKJhz9G8pModoZJaLMziRJtd582pFHbIydNXwRI72ECkjqbc7XIgBX+8kssrUtRxK2rW9VVQnGKDpmyZ8iSIyw==
 
-"@sentre/senhub@^3.0.42":
-  version "3.0.42"
-  resolved "https://registry.yarnpkg.com/@sentre/senhub/-/senhub-3.0.42.tgz#ad30203c16d0345aaa227e6d956c91cd145bc189"
-  integrity sha512-DF0SSbSB6IVBj41vpsusKzDETsTMuCnGS+1IzA4xDoUDqHwOWsaSvS8ckaleeLzFeXWXj85J3lwWDkuFZ/qmJw==
+"@sentre/senhub@^3.0.47":
+  version "3.0.47"
+  resolved "https://registry.yarnpkg.com/@sentre/senhub/-/senhub-3.0.47.tgz#ad9eb68fb123423851e45b74d558898eec7fcdfb"
+  integrity sha512-Abv0U9vJQryE1vb7HX05q5u8Qzq4Z+HwXG9WIq5nIKgyX8ZhR8TUL+npbkbi8rXrIJPboJuw0wIUEvtk3ZEZyg==
   dependencies:
     "@dnd-kit/core" "^4.0.1"
     "@dnd-kit/sortable" "^5.0.0"
@@ -3712,6 +3715,11 @@ base-x@^3.0.2:
   dependencies:
     safe-buffer "^5.0.1"
 
+base-x@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/base-x/-/base-x-4.0.0.tgz#d0e3b7753450c73f8ad2389b5c018a4af7b2224a"
+  integrity sha512-FuwxlW4H5kh37X/oW59pwTzzTKRzfrrQwhmyspRM7swOEZcHtDZSCt45U6oKgtuFE+WYPblePMVIPR4RZrh/hw==
+
 base16@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/base16/-/base16-1.0.0.tgz#e297f60d7ec1014a7a971a39ebc8a98c0b681e70"
@@ -3998,6 +4006,13 @@ bs58@^4.0.0, bs58@^4.0.1:
   integrity sha512-Ok3Wdf5vOIlBrgCvTq96gBkJw+JUEzdBgyaza5HLtPm7yTHkjRy8+JzNyHF7BHa0bNWOQIp3m5YF0nnFcOIKLw==
   dependencies:
     base-x "^3.0.2"
+
+bs58@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/bs58/-/bs58-5.0.0.tgz#865575b4d13c09ea2a84622df6c8cbeb54ffc279"
+  integrity sha512-r+ihvQJvahgYT50JD05dyJNKlmmSlMoOGwn1lCcEzanPglg7TxYjioQUYehQ9mAR/+hOSd2jRc/Z2y5UxBymvQ==
+  dependencies:
+    base-x "^4.0.0"
 
 bser@2.1.1:
   version "2.1.1"
