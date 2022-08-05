@@ -26,7 +26,7 @@ const View = () => {
         <Input
           value={appId}
           onChange={(e) => setAppId(e.target.value || '')}
-          placeholder="my-app-id"
+          placeholder="my_app_id"
         />
       </Col>
       <Col span={16}>
