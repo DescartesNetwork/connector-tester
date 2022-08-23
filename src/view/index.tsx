@@ -1,68 +1,51 @@
-import { useState, useEffect, useCallback, useMemo } from 'react'
-import { Gateway } from '@sentre/connector'
+import { useCallback, useMemo } from 'react'
+import { useLocation } from 'react-router-dom'
+import { useAppRoute } from '@sentre/senhub'
 
-import { Button, Card, Col, Input, Row } from 'antd'
+import { Col, Row, Segmented } from 'antd'
+import Tester from './tester'
+import Submission from './submission'
+
+export enum Category {
+  Tester = 'connector-tester',
+  Submission = 'dapp-submission',
+}
+
+const SubApp = ({ type = Category.Tester }: { type?: Category }) => {
+  if (type === Category.Submission) return <Submission />
+  return <Tester />
+}
 
 const View = () => {
-  const [tmpSrc, setTmpSrc] = useState('')
-  const [src, setSrc] = useState('https://sentre.io/')
-  const [appId, setAppId] = useState('')
+  const { to } = useAppRoute()
+  const { search } = useLocation()
+  const tab = useMemo(() => {
+    const params = new URLSearchParams(search)
+    const value = params.get('tab') as Category
+    if (!Object.values(Category).includes(value)) return Category.Tester
+    return value
+  }, [search])
 
-  const frameId = useMemo(() => appId + '-iframe', [appId])
-  const onSrc = useCallback(() => setSrc(tmpSrc), [tmpSrc])
-  const onRefresh = useCallback(() => {
-    const iframe = document.getElementById(frameId) as HTMLIFrameElement | null
-    if (iframe) iframe.src += ''
-  }, [frameId])
-
-  useEffect(() => {
-    const gateway = new Gateway(window.sentre.wallet)
-    return gateway.terminate
-  }, [])
+  const setTab = useCallback((value: Category) => to(`?tab=${value}`), [to])
 
   return (
-    <Row gutter={[12, 12]}>
-      <Col span={8}>
-        <Input
-          value={appId}
-          onChange={(e) => setAppId(e.target.value || '')}
-          placeholder="my_app_id"
-        />
-      </Col>
-      <Col span={16}>
-        <Input
-          value={tmpSrc}
-          onChange={(e) => setTmpSrc(e.target.value || '')}
-          placeholder="http://localhost:3000"
-          suffix={
-            <Button
-              type="text"
-              size="small"
-              onClick={tmpSrc === src ? onRefresh : onSrc}
-              disabled={!tmpSrc}
-              style={{ marginRight: -7 }}
-            >
-              {tmpSrc === src ? 'Refresh' : 'Save'}
-            </Button>
-          }
-        />
+    <Row gutter={[24, 24]}>
+      <Col span={24}>
+        <Row gutter={[24, 24]} justify="center">
+          <Col>
+            <Segmented
+              options={[
+                { label: 'Connector Tester', value: Category.Tester },
+                { label: 'DApp Submission', value: Category.Submission },
+              ]}
+              value={tab}
+              onChange={(e) => setTab(e as Category)}
+            />
+          </Col>
+        </Row>
       </Col>
       <Col span={24}>
-        <Card bodyStyle={{ padding: 16, height: 'calc(100vh - 144px)' }}>
-          <iframe
-            id={frameId}
-            src={src}
-            title="Senhub Connector Tester."
-            style={{
-              height: '100%',
-              width: '100%',
-              border: 'none',
-              borderRadius: 8,
-            }}
-            loading="lazy"
-            allowFullScreen
-          />
-        </Card>
+        <SubApp type={tab} />
       </Col>
     </Row>
   )
