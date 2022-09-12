@@ -1,10 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+import configs from 'configs'
+
+const {
+  api: { dapp },
+} = configs
 
 /**
  * Interface & Utility
  */
-
-export type State = Record<string, ComponentManifest>
+export type DappManifest = ComponentManifest & {
+  author: { walletAddress: string }
+  createdAt: Date
+  updatedAt: Date
+}
+export type State = Record<string, DappManifest>
 
 /**
  * Store constructor
@@ -18,13 +28,22 @@ const initialState: State = {}
  */
 
 export const getDApps = createAsyncThunk(`${NAME}/getDApps`, async () => {
-  return {}
+  const { data } = await axios.get(dapp.index, {
+    withCredentials: true,
+  })
+  console.log(data)
+  const dapps: State = {}
+  data.forEach((dapp: DappManifest) => (dapps[dapp.appId] = dapp))
+  return dapps
 })
 
 export const submitDApp = createAsyncThunk(
   `${NAME}/submitDApp`,
-  async (manifest: ComponentManifest) => {
-    return { [manifest.appId]: manifest }
+  async (manifest: Omit<DappManifest, 'createdAt' | 'updatedAt'>) => {
+    const { data } = await axios.put(dapp.index, manifest, {
+      withCredentials: true,
+    })
+    return { [data.appId]: data }
   },
 )
 

@@ -1,16 +1,34 @@
 import { MouseEvent, useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useWalletAddress } from '@sentre/senhub'
 
 import { Button, Col, Row, Space, Typography, Upload } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
 
 import { AppDispatch } from 'model'
 import { getDApps, submitDApp } from 'model/dapp.controller'
+import Management from './management'
+
+const readFile = (file: File): Promise<ComponentManifest> => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader()
+    fileReader.onload = (e) => {
+      if (!e.target?.result) return reject('Cannot read empty file')
+      const manifest = JSON.parse(
+        e.target.result.toString(),
+      ) as ComponentManifest
+      return resolve(manifest)
+    }
+    fileReader.onerror = reject
+    fileReader.readAsText(file)
+  })
+}
 
 const Submission = () => {
   const [loading, setLoading] = useState(false)
   const [file, setFile] = useState<File>()
   const dispatch = useDispatch<AppDispatch>()
+  const walletAddress = useWalletAddress()
 
   const onUpload = (file: File) => {
     setFile(file)
@@ -25,14 +43,21 @@ const Submission = () => {
       try {
         e.stopPropagation()
         setLoading(true)
-        await dispatch(submitDApp(undefined as any))
+        if (!file) throw new Error('Cannot submit empty file')
+        const manifest = await readFile(file)
+        await dispatch(
+          submitDApp({
+            ...manifest,
+            author: { ...manifest.author, walletAddress },
+          }),
+        )
       } catch (er: any) {
         return window.notify({ type: 'error', description: er.message })
       } finally {
         return setLoading(false)
       }
     },
-    [dispatch],
+    [dispatch, walletAddress, file],
   )
 
   useEffect(() => {
@@ -72,6 +97,10 @@ const Submission = () => {
             </Space>
           </Space>
         </Upload.Dragger>
+      </Col>
+      <Col xs={24} />
+      <Col xs={24} md={18}>
+        <Management />
       </Col>
     </Row>
   )
