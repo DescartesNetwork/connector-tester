@@ -1,29 +1,16 @@
 import { MouseEvent, ReactNode } from 'react'
 import { useRegisterSelector } from '@sentre/senhub'
 
-import { Space, Avatar, Typography, Badge, AvatarProps } from 'antd'
+import { Space, Avatar, Typography, AvatarProps } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
-
-import configs from 'configs'
-import './index.os.less'
-
-const {
-  manifest: { appId: devAppId },
-} = configs
 
 export type AppAvatarProps = {
   appId: string
   avatarProps: AvatarProps
 }
 
-export const AppAvatar = ({ appId, avatarProps }: AppAvatarProps) => {
-  return appId === devAppId ? (
-    <Badge.Ribbon className="sentre-ribbon-dev" text="dev" placement="start">
-      <Avatar {...avatarProps}>
-        <IonIcon name="image-outline" />
-      </Avatar>
-    </Badge.Ribbon>
-  ) : (
+export const AppAvatar = ({ avatarProps }: AppAvatarProps) => {
+  return (
     <Avatar {...avatarProps}>
       <IonIcon name="image-outline" />
     </Avatar>

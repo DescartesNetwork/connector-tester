@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useState } from 'react'
+import { MouseEvent, useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useWalletAddress } from '@sentre/senhub'
 
@@ -8,6 +8,7 @@ import IonIcon from '@sentre/antd-ionicon'
 import { AppDispatch } from 'model'
 import { getDApps, submitDApp } from 'model/dapp.controller'
 import Management from './management'
+import { UploadChangeParam, UploadFile } from 'antd/lib/upload'
 
 const readFile = (file: File): Promise<ComponentManifest> => {
   return new Promise((resolve, reject) => {
@@ -26,16 +27,17 @@ const readFile = (file: File): Promise<ComponentManifest> => {
 
 const Submission = () => {
   const [loading, setLoading] = useState(false)
-  const [file, setFile] = useState<File>()
+  const [fileList, setFileList] = useState<UploadFile[]>([])
   const dispatch = useDispatch<AppDispatch>()
   const walletAddress = useWalletAddress()
 
-  const onUpload = (file: File) => {
-    setFile(file)
-    return false
+  const file = useMemo(() => fileList[0]?.originFileObj, [fileList])
+
+  const onUpload = ({ fileList }: UploadChangeParam) => {
+    return setFileList(fileList)
   }
   const onRemove = () => {
-    setFile(undefined)
+    setFileList([])
     return true
   }
   const onSubmit = useCallback(
@@ -51,6 +53,11 @@ const Submission = () => {
             author: { ...manifest.author, walletAddress },
           }),
         )
+        setFileList([])
+        return window.notify({
+          type: 'success',
+          description: `Complete the ${manifest.name} submission!`,
+        })
       } catch (er: any) {
         return window.notify({ type: 'error', description: er.message })
       } finally {
@@ -69,8 +76,10 @@ const Submission = () => {
       <Col xs={24} md={18}>
         <Upload.Dragger
           accept=".json"
-          beforeUpload={onUpload}
+          beforeUpload={() => false}
           onRemove={onRemove}
+          onChange={onUpload}
+          fileList={fileList}
           maxCount={1}
         >
           <Space direction="vertical" size="large" align="center">
@@ -102,6 +111,7 @@ const Submission = () => {
       <Col xs={24} md={18}>
         <Management />
       </Col>
+      <Col xs={24} />
     </Row>
   )
 }

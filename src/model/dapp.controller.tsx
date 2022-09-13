@@ -31,7 +31,6 @@ export const getDApps = createAsyncThunk(`${NAME}/getDApps`, async () => {
   const { data } = await axios.get(dapp.index, {
     withCredentials: true,
   })
-  console.log(data)
   const dapps: State = {}
   data.forEach((dapp: DappManifest) => (dapps[dapp.appId] = dapp))
   return dapps
