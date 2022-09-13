@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Col, Row, Typography } from 'antd'
@@ -10,6 +10,7 @@ import { getDApps } from 'model/dapp.controller'
 const Management = () => {
   const dispatch = useDispatch<AppDispatch>()
   const dapps = useSelector((state: AppState) => state.dapp)
+  const dappIds = useMemo(() => Object.keys(dapps), [dapps])
 
   useEffect(() => {
     dispatch(getDApps())
@@ -18,9 +19,11 @@ const Management = () => {
   return (
     <Row gutter={[12, 12]}>
       <Col span={24}>
-        <Typography.Title level={4}>My DApps</Typography.Title>
+        <Typography.Title
+          level={4}
+        >{`My DApps (${dappIds.length})`}</Typography.Title>
       </Col>
-      {Object.keys(dapps).map((appId) => (
+      {dappIds.map((appId) => (
         <Col key={appId} span={24}>
           <DAppCard appId={appId} />
         </Col>
