@@ -46,6 +46,16 @@ export const submitDApp = createAsyncThunk(
   },
 )
 
+export const deleteDApp = createAsyncThunk(
+  `${NAME}/deleteDApp`,
+  async (appId: string) => {
+    await axios.delete(`${dapp.index}/${appId}`, {
+      withCredentials: true,
+    })
+    return { appId }
+  },
+)
+
 /**
  * Usual procedure
  */
@@ -63,6 +73,10 @@ const slice = createSlice({
       .addCase(
         submitDApp.fulfilled,
         (state, { payload }) => void Object.assign(state, payload),
+      )
+      .addCase(
+        deleteDApp.fulfilled,
+        (state, { payload }) => void delete state[payload.appId],
       ),
 })
 
