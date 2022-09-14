@@ -13,6 +13,9 @@ const generator = (origin: string): Conf => ({
   origin,
   dapp: {
     index: origin + '/dapp',
+    get author() {
+      return this.index + '/author'
+    },
     get verify() {
       return this.index + '/verify'
     },

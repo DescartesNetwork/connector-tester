@@ -28,7 +28,7 @@ const initialState: State = {}
  */
 
 export const getDApps = createAsyncThunk(`${NAME}/getDApps`, async () => {
-  const { data } = await axios.get(dapp.index, {
+  const { data } = await axios.get(dapp.author, {
     withCredentials: true,
   })
   const dapps: State = {}
