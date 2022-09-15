@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Col, Empty, Row, Typography } from 'antd'
-import DAppCard from './dappCard'
+import DAppCard from 'components/dappCard'
 
 import { AppDispatch, AppState } from 'model'
 import { getDApps } from 'model/dapp.controller'

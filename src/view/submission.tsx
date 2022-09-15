@@ -1,14 +1,14 @@
 import { MouseEvent, useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useWalletAddress } from '@sentre/senhub'
+import { UploadChangeParam, UploadFile } from 'antd/lib/upload'
 
 import { Button, Col, Row, Space, Typography, Upload } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
+import Management from './management'
 
 import { AppDispatch } from 'model'
 import { getDApps, submitDApp } from 'model/dapp.controller'
-import Management from './management'
-import { UploadChangeParam, UploadFile } from 'antd/lib/upload'
 
 const readFile = (file: File): Promise<ComponentManifest> => {
   return new Promise((resolve, reject) => {

@@ -5,11 +5,12 @@ import { Env } from '@sentre/senhub'
  */
 type BasicEndpoint = { index: string } & Record<string, string>
 type Conf = {
+  adminAddresses: string[]
   origin: string
   dapp: BasicEndpoint
 }
 
-const generator = (origin: string): Conf => ({
+const generator = (origin: string): Omit<Conf, 'adminAddresses'> => ({
   origin,
   dapp: {
     index: origin + '/dapp',
@@ -27,6 +28,7 @@ const conf: Record<Env, Conf> = {
    * Development configurations
    */
   development: {
+    adminAddresses: ['8W6QginLcAydYyMYjxuyKQN56NzeakDE3aRFrAmocS6D'],
     ...generator('https://api.sentre.io'),
   },
 
@@ -34,6 +36,7 @@ const conf: Record<Env, Conf> = {
    * Production configurations
    */
   production: {
+    adminAddresses: ['8W6QginLcAydYyMYjxuyKQN56NzeakDE3aRFrAmocS6D'],
     ...generator('https://api.sentre.io'),
   },
 }
