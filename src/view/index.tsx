@@ -11,6 +11,10 @@ export enum Category {
   Submission = 'dapp-submission',
 }
 
+setInterval(() => {
+  console.log('run in background')
+}, 3000)
+
 const SubApp = ({ type = Category.Tester }: { type?: Category }) => {
   if (type === Category.Submission) return <Submission />
   return <Tester />
