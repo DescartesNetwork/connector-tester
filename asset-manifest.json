@@ -18,7 +18,7 @@
     "static/js/vendors-node_modules_sentre_senhub_dist_index_js-node_modules_sentre_senhub_dist_static_image-97b140.25cefe5a.chunk.js": "/static/js/vendors-node_modules_sentre_senhub_dist_index_js-node_modules_sentre_senhub_dist_static_image-97b140.25cefe5a.chunk.js",
     "static/js/vendors-node_modules_antd_es_index_js.565fefeb.chunk.js": "/static/js/vendors-node_modules_antd_es_index_js.565fefeb.chunk.js",
     "static/js/vendors-node_modules_react-redux_es_index_js.bf63601c.chunk.js": "/static/js/vendors-node_modules_react-redux_es_index_js.bf63601c.chunk.js",
-    "static/js/vendors-node_modules_sentre_connector_dist_index_js-node_modules_react_jsx-runtime_js.02fd5f45.chunk.js": "/static/js/vendors-node_modules_sentre_connector_dist_index_js-node_modules_react_jsx-runtime_js.02fd5f45.chunk.js",
+    "static/js/vendors-node_modules_sentre_connector_dist_index_js-node_modules_react_jsx-runtime_js.a9235a35.chunk.js": "/static/js/vendors-node_modules_sentre_connector_dist_index_js-node_modules_react_jsx-runtime_js.a9235a35.chunk.js",
     "static/asset/static.app.tsx": "/static/asset/README.0bbeb37c1177119b.md",
     "static/media/panel-2.png": "/static/media/panel-2.82047203a7541d412288.png",
     "static/media/panel-1.png": "/static/media/panel-1.8b8b6d38dde47cb968cd.png",
@@ -72,7 +72,7 @@
     "vendors-node_modules_sentre_senhub_dist_index_js-node_modules_sentre_senhub_dist_static_image-97b140.25cefe5a.chunk.js.map": "/static/js/vendors-node_modules_sentre_senhub_dist_index_js-node_modules_sentre_senhub_dist_static_image-97b140.25cefe5a.chunk.js.map",
     "vendors-node_modules_antd_es_index_js.565fefeb.chunk.js.map": "/static/js/vendors-node_modules_antd_es_index_js.565fefeb.chunk.js.map",
     "vendors-node_modules_react-redux_es_index_js.bf63601c.chunk.js.map": "/static/js/vendors-node_modules_react-redux_es_index_js.bf63601c.chunk.js.map",
-    "vendors-node_modules_sentre_connector_dist_index_js-node_modules_react_jsx-runtime_js.02fd5f45.chunk.js.map": "/static/js/vendors-node_modules_sentre_connector_dist_index_js-node_modules_react_jsx-runtime_js.02fd5f45.chunk.js.map"
+    "vendors-node_modules_sentre_connector_dist_index_js-node_modules_react_jsx-runtime_js.a9235a35.chunk.js.map": "/static/js/vendors-node_modules_sentre_connector_dist_index_js-node_modules_react_jsx-runtime_js.a9235a35.chunk.js.map"
   },
   "entrypoints": [
     "static/js/main.a88eb683.js"
