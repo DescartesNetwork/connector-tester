@@ -16,7 +16,7 @@ const Tester = () => {
   }, [frameId])
 
   useEffect(() => {
-    const gateway = new Gateway(window.sentre.wallet)
+    const gateway = new Gateway(window.sentre.solana)
     return gateway.terminate
   }, [])
 
@@ -48,7 +48,7 @@ const Tester = () => {
         />
       </Col>
       <Col span={24}>
-        <Card bodyStyle={{ padding: 16, height: 'calc(100vh - 206px)' }}>
+        <Card bodyStyle={{ padding: 16, height: 'calc(100vh - 128px)' }}>
           <iframe
             id={frameId}
             src={src}
